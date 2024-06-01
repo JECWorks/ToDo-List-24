@@ -15,6 +15,7 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
 
+    // Consider deleting vs not deleting the code section below
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
