@@ -834,8 +834,19 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCO-d9-RGq">
+                                <rect key="frame" x="297" y="7" width="170" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uMe-nI-DhV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteClicked:" target="XfG-lQ-9wD" id="51t-UR-gz8"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mlg-gk-MHX">
-                                <rect key="frame" x="400" y="146" width="59" height="32"/>
+                                <rect key="frame" x="408" y="146" width="59" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="drA-z9-dRL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -848,6 +859,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="hCO-d9-RGq" id="MTB-xe-IpX"/>
                         <outlet property="importantCheckbox" destination="cmo-1P-Igj" id="DHk-Yq-Kap"/>
                         <outlet property="tableView" destination="ApR-Df-ANh" id="F8u-hU-yDe"/>
                         <outlet property="textField" destination="8Rv-Le-UuR" id="M0l-aJ-GfV"/>

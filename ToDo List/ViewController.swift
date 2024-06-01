@@ -11,10 +11,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var importantCheckbox: NSButton!
+    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var deleteButton: NSButton!
     
     var toDoItems : [ToDoItem] = []
-    
-    @IBOutlet weak var tableView: NSTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             do {
                 // set them to the class property
                 toDoItems = try context.fetch(ToDoItem.fetchRequest())
-                print(toDoItems.count)
             } catch {}
         }
         // Update the table
@@ -74,6 +73,31 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             }
         }
     }
+
+    
+    @IBAction func deleteClicked(_ sender: Any) {
+        
+        // Ensure that an item is selected in the table view
+        guard tableView.selectedRow >= 0 else {
+            // Optionally, you could show an alert or some feedback to the user that no item is selected.
+            return
+        }
+        
+        let toDoItem = toDoItems[tableView.selectedRow]
+        
+        if let context = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            
+            context.delete(toDoItem)
+            
+            // Save the context
+            (NSApplication.shared.delegate as? AppDelegate)?.save()
+            
+            // Refresh the list of to-do items
+            getToDoItems()
+            deleteButton.isHidden = true
+        }
+    }
+    
     
     // MARK: - TableView Stuff
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -108,13 +132,13 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 
                 return cell
             }
-            
         }
         
-        
-        
-        
         return nil
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        deleteButton.isHidden = false
     }
     
 }
